@@ -5,4 +5,9 @@ public class Group implements Id {
     public String getDisplayName() {
         return null;
     }
+
+    @Override
+    public void acceptable() {
+
+    }
 }
