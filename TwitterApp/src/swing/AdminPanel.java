@@ -21,7 +21,7 @@ public class AdminPanel {
 
     public static AdminPanel getInstance(){
         if(window == null){
-            synchronized (window){
+            synchronized (AdminPanel.class){
                 if(window == null){
                     window = new AdminPanel();
                 }
@@ -74,13 +74,16 @@ public class AdminPanel {
                 JWindow.getWindows();
             }
         });
+
+
     }
 
-    public static void main(String[] args) {
+    public void createWindow(){
         JFrame frame = new JFrame("Twitter App");
         frame.setContentPane(new AdminPanel().panelMane);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
+
 }
