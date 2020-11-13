@@ -1,8 +1,8 @@
 package swing;
 
-public class PositivePercentage implements Visitor{
+public class PositivePercentage implements AdminElement {
     @Override
-    public void acceptable() {
+    public void acceptable(AdminVisitor visitor) {
 
     }
 }

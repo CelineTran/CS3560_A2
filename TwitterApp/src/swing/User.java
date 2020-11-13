@@ -1,6 +1,5 @@
 package swing;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class User extends Subject implements Id, Observer{
@@ -31,7 +30,7 @@ public class User extends Subject implements Id, Observer{
     }
 
     @Override
-    public void acceptable() {
+    public void acceptable(AdminVisitor visitor) {
 
     }
 

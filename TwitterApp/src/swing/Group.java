@@ -13,7 +13,7 @@ public class Group implements Id {
     }
 
     @Override
-    public void acceptable() {
+    public void acceptable(AdminVisitor visitor) {
 
     }
 

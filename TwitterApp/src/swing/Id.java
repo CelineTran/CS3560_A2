@@ -1,6 +1,6 @@
 package swing;
 
-public interface Id extends Visitor {
+public interface Id extends AdminElement {
 
     public String getDisplayName();
 
