@@ -2,7 +2,7 @@ package swing;
 
 public class PositivePercentage implements AdminElement {
     @Override
-    public void acceptable(AdminVisitor visitor) {
-
+    public String acceptable(AdminVisitor visitor, AdminPanel ap) {
+        return visitor.visit(this, ap);
     }
 }

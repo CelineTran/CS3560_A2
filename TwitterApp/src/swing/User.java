@@ -30,8 +30,8 @@ public class User extends Subject implements Id, Observer{
     }
 
     @Override
-    public void acceptable(AdminVisitor visitor) {
-
+    public String acceptable(AdminVisitor visitor, AdminPanel ap) {
+        return null;
     }
 
     public User(String userId){
@@ -81,6 +81,14 @@ public class User extends Subject implements Id, Observer{
         this.notifyObservers();
     }
 
+    public String printFeed(){
+        String feed = "";
+        for (String tweet: newsFeed){
+            feed += "-- " + tweet + "\n";
+        }
+        return feed;
+    }
+
     // add follower (Observer) to this user
     public void addFollowing(User newUser){
         if(!following.contains(newUser)){
@@ -100,6 +108,14 @@ public class User extends Subject implements Id, Observer{
         else{
             System.out.println(userId + " is already a follower of " + newUser);
         }
+    }
+
+    public String printFollowing(){
+        String followings = "";
+        for(User user: following){
+            followings += user.getDisplayName() + "\n";
+        }
+        return followings;
     }
 
 }

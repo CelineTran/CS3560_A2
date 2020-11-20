@@ -2,15 +2,18 @@ package swing;
 
 public class Driver {
 
+    AdminPanel adminPanel;
+    AdminPanelUI window;
+
     public static void main(String[] args) {
-        AdminPanel.getInstance();
-
-        Group root = new Group("root");
-
-        User bob = new User("bob");
-        User joe = new User("joe");
-        User jane = new User("jane");
-        User john = new User("john");
-
+        new Driver();
     }
+
+    public Driver(){
+        adminPanel = AdminPanel.getInstance();
+        window = new AdminPanelUI(adminPanel);
+        window.createWindow();
+    }
+
+
 }

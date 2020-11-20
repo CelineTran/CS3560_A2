@@ -1,5 +1,5 @@
 package swing;
 
 public interface AdminElement {
-    public void acceptable(AdminVisitor visitor);
+    public String acceptable(AdminVisitor visitor, AdminPanel ap);
 }

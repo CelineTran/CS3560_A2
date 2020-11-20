@@ -13,8 +13,8 @@ public class Group implements Id {
     }
 
     @Override
-    public void acceptable(AdminVisitor visitor) {
-
+    public String acceptable(AdminVisitor visitor, AdminPanel ap) {
+        return null;
     }
 
     public Group(String groupName){
