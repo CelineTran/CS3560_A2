@@ -11,6 +11,7 @@ public class AdminPanel implements Observer{
     private int tweetTotal;
     private int posTotal;
     private boolean valid;
+    private String lastUpdateUser;
 
     public ArrayList<User> users;
     public ArrayList<Group> groups;
@@ -33,6 +34,7 @@ public class AdminPanel implements Observer{
         this.setTweetTotal(0);
         this.setPosTotal(0);
         this.setValid(true);
+        this.setLastUpdateUser("N/A");
         users = new ArrayList<User>();
         groups = new ArrayList<Group>();
         total = new ArrayList<Id>();
@@ -76,6 +78,10 @@ public class AdminPanel implements Observer{
 
     public boolean isValid() {
         return valid;
+    }
+
+    public void setLastUpdateUser(String lastUpdateUser) {
+        this.lastUpdateUser = lastUpdateUser;
     }
 
     public User getUser(String name){
@@ -142,6 +148,25 @@ public class AdminPanel implements Observer{
             }
         }
         return ("No time found");
+    }
+
+    public String getLastUpdatedUser(){
+        User temp;
+
+        if(users.size() > 0){
+            temp = users.get(0);
+
+            for(User user: users){
+                if(user.getUpdatedTime() > temp.getUpdatedTime()){
+                    temp = user;
+                }
+            }
+        }
+        else{
+            return "Not applicable";
+        }
+
+        return temp.getDisplayName();
     }
 
     @Override

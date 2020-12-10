@@ -22,6 +22,7 @@ public class AdminPanelUI {
     private JButton showPositivePercentageButton;
     private JPanel panelMane;
     private JButton validateIDsButton;
+    private JButton lastUpdatedUserButton;
     private DefaultMutableTreeNode root;
     private DefaultMutableTreeNode currentNode;
     private DefaultTreeModel treeModel;
@@ -113,6 +114,13 @@ public class AdminPanelUI {
                     output = "Invalid user or group IDs are present";
                 }
                 JOptionPane.showMessageDialog(frame, output);
+            }
+        });
+        lastUpdatedUserButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new JFrame();
+                JOptionPane.showMessageDialog(frame, adminPanel.getLastUpdatedUser());
             }
         });
     }

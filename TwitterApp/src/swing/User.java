@@ -95,6 +95,7 @@ public class User extends Subject implements Id, Observer{
         this.updatedTime = updatedTime;
     }
 
+
     public void addTweet(String msg){
         setUpdatedTime(System.currentTimeMillis());
         newsFeed.add(this.userId + ": " + msg);
