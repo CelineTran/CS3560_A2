@@ -9,6 +9,8 @@ public class User extends Subject implements Id, Observer{
     private ArrayList<User> following;
     private ArrayList<String> newsFeed;
     private ArrayList<String> tweet;
+    private long creationTime;
+    private long updatedTime;
 
     @Override
     public String getDisplayName() {
@@ -40,6 +42,8 @@ public class User extends Subject implements Id, Observer{
         this.following = new ArrayList<User>();
         this.newsFeed = new ArrayList<String>();
         this.tweet = new ArrayList<String>();
+        this.setCreationTime(System.currentTimeMillis());
+        this.setUpdatedTime(System.currentTimeMillis());
     }
 
 
@@ -75,7 +79,24 @@ public class User extends Subject implements Id, Observer{
         return tweet.get(tweet.size()-1);
     }
 
+    public long getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(long creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public long getUpdatedTime() {
+        return updatedTime;
+    }
+
+    public void setUpdatedTime(long updatedTime) {
+        this.updatedTime = updatedTime;
+    }
+
     public void addTweet(String msg){
+        setUpdatedTime(System.currentTimeMillis());
         newsFeed.add(this.userId + ": " + msg);
         tweet.add(this.userId + ": " + msg);
         this.notifyObservers();
@@ -91,6 +112,7 @@ public class User extends Subject implements Id, Observer{
 
     // add follower (Observer) to this user
     public void addFollowing(User newUser){
+        setUpdatedTime(System.currentTimeMillis());
         if(!following.contains(newUser)){
             following.add(newUser);
             this.attach(newUser);
@@ -101,6 +123,7 @@ public class User extends Subject implements Id, Observer{
     }
 
     public void addFollower(User newUser){
+        setUpdatedTime(System.currentTimeMillis());
         if(!followers.contains(newUser)){
             followers.add(newUser);
             this.attach(newUser);
@@ -116,6 +139,22 @@ public class User extends Subject implements Id, Observer{
             followings += user.getDisplayName() + "\n";
         }
         return followings;
+    }
+
+    public String printTime(){
+        long hour = (creationTime/(1000 * 60 * 60)) % 24;
+        long minute = (creationTime/(1000 * 60)) % 60;
+        long seconds = (creationTime/1000) % 60;
+
+        String createdTime = String.format("%02d:%02d:%02d", ((hour+4)%24), minute, seconds);
+
+        hour = (updatedTime/(1000 * 60 * 60)) % 24;
+        minute = (updatedTime/(1000 * 60)) % 60;
+        seconds = (updatedTime/1000) % 60;
+
+        String lastUpdatedTime = String.format("%02d:%02d:%02d", ((hour+4)%24), minute, seconds);
+
+        return ("Created time: " + createdTime + "\nLast updated time: " + lastUpdatedTime);
     }
 
 }

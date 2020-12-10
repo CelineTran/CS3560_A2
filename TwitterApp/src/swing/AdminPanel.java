@@ -116,25 +116,32 @@ public class AdminPanel implements Observer{
 
     public void getValid(){
         ArrayList<String> temp = new ArrayList<String>();
-        for(int i = 0; i < users.size(); ++i){
-            if(users.get(i).getDisplayName().contains(" ") || temp.contains(users.get(i).getDisplayName())){
-                setValid(false);
+        for(User user: users){
+            if(user.getDisplayName().contains(" ") || temp.contains(user.getDisplayName())){
+                valid = false;
             }
             else{
-                temp.add(users.get(i).getDisplayName());
+                temp.add(user.getDisplayName());
             }
         }
         ArrayList<String> temp2 = new ArrayList<String>();
-        for(int i = 0; i < groups.size(); ++i) {
-            if (groups.get(i).getDisplayName().contains(" ") || temp2.contains(users.get(i).getDisplayName())) {
-                setValid(false);
+        for(Group group: groups) {
+            if (group.getDisplayName().contains(" ") || temp2.contains(group.getDisplayName())) {
+                valid = false;
             }
             else{
-                temp2.add(groups.get(i).getDisplayName());
+                temp2.add(group.getDisplayName());
             }
         }
+    }
 
-        setValid(true);
+    public String printUserTime(String newUser){
+        for(User user: users) {
+            if(user.getDisplayName().equals(newUser)) {
+                return user.printTime();
+            }
+        }
+        return ("No time found");
     }
 
     @Override

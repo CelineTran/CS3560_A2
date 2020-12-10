@@ -6,6 +6,7 @@ public class Group implements Id {
 
     private String groupName;
     private ArrayList<User> groupMembers;
+    private long creationTime;
 
     @Override
     public String getDisplayName() {
@@ -20,6 +21,15 @@ public class Group implements Id {
     public Group(String groupName){
         this.groupName = groupName;
         this.groupMembers = new ArrayList<User>();
+        this.setCreateionTime(System.currentTimeMillis());
+    }
+
+    public long getCreateionTime() {
+        return creationTime;
+    }
+
+    public void setCreateionTime(long creationTime) {
+        this.creationTime = creationTime;
     }
 
     public void getGroup(){

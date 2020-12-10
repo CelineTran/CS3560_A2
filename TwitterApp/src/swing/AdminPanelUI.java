@@ -104,6 +104,7 @@ public class AdminPanelUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame();
+                adminPanel.getValid();
                 String output;
                 if(adminPanel.isValid()){
                     output = "All user and group IDs are valid";
