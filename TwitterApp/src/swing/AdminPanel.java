@@ -10,6 +10,7 @@ public class AdminPanel implements Observer{
     private int groupTotal;
     private int tweetTotal;
     private int posTotal;
+    private boolean valid;
 
     public ArrayList<User> users;
     public ArrayList<Group> groups;
@@ -31,6 +32,7 @@ public class AdminPanel implements Observer{
         this.setGroupTotal(0);
         this.setTweetTotal(0);
         this.setPosTotal(0);
+        this.setValid(true);
         users = new ArrayList<User>();
         groups = new ArrayList<Group>();
         total = new ArrayList<Id>();
@@ -68,6 +70,14 @@ public class AdminPanel implements Observer{
         this.posTotal = posTotal;
     }
 
+    public void setValid(boolean valid) {
+        this.valid = valid;
+    }
+
+    public boolean isValid() {
+        return valid;
+    }
+
     public User getUser(String name){
         for(User user: users){
             if(user.getDisplayName().equals(name)){
@@ -102,6 +112,29 @@ public class AdminPanel implements Observer{
         if(msg.contains("good")) {
             this.posTotal++;
         }
+    }
+
+    public void getValid(){
+        ArrayList<String> temp = new ArrayList<String>();
+        for(int i = 0; i < users.size(); ++i){
+            if(users.get(i).getDisplayName().contains(" ") || temp.contains(users.get(i).getDisplayName())){
+                setValid(false);
+            }
+            else{
+                temp.add(users.get(i).getDisplayName());
+            }
+        }
+        ArrayList<String> temp2 = new ArrayList<String>();
+        for(int i = 0; i < groups.size(); ++i) {
+            if (groups.get(i).getDisplayName().contains(" ") || temp2.contains(users.get(i).getDisplayName())) {
+                setValid(false);
+            }
+            else{
+                temp2.add(groups.get(i).getDisplayName());
+            }
+        }
+
+        setValid(true);
     }
 
     @Override

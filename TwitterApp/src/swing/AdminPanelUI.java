@@ -21,6 +21,7 @@ public class AdminPanelUI {
     private JButton showMessagesTotalButton;
     private JButton showPositivePercentageButton;
     private JPanel panelMane;
+    private JButton validateIDsButton;
     private DefaultMutableTreeNode root;
     private DefaultMutableTreeNode currentNode;
     private DefaultTreeModel treeModel;
@@ -96,6 +97,21 @@ public class AdminPanelUI {
                 } else {
                     groupIdTextArea.setText(("Group ID:" + path.getPathComponent(path.getPathCount() - 2).toString()));
                 }
+            }
+        });
+
+        validateIDsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new JFrame();
+                String output;
+                if(adminPanel.isValid()){
+                    output = "All user and group IDs are valid";
+                }
+                else{
+                    output = "Invalid user or group IDs are present";
+                }
+                JOptionPane.showMessageDialog(frame, output);
             }
         });
     }
